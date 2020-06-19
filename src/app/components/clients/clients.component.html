@@ -1,0 +1,42 @@
+<div class="row m-3">
+    <div class="col-md-6">
+        <a routerLink="/client/add" class="btn btn-success">
+            <i class="fa fa-plus"></i>New Client
+        </a>
+    </div>
+
+    <div class="col-md-6">
+        <h4 class="text-right">Total : {{total | currency: 'USD':'symbol'}}</h4>
+    </div>
+    
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">List Clients</h4>
+        <input   #query (keyup)="search(query.value)" class="form-control" type="text"  placeholder="Firstname,Lastname,Email" name="" id="">
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>Phone</th>
+                    <th>Balance</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let client of searchClients"  (dblclick)="deleteClient(client.id)">
+                        <td scope="row"  >{{client.firstname}}  {{client.lastname}}</td>
+                        <td>{{client.phone}}</td>
+                        <td>{{client.balance | currency: 'USD':'symbol'}}</td>
+                        <td class="text-right">
+                        <a routerLink="/client/details/{{client.id}}" class="btn btn-info"><i class="fa fa-info-circle"></i></a>
+                        <a routerLink="/client/edit/{{client.id}}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                        </td>
+
+                    </tr>
+                    
+                </tbody>
+        </table>
+    </div>
+</div>
